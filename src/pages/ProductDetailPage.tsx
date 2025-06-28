@@ -18,7 +18,6 @@ import { StarRating, StarRatingInput } from "@/components/ui/star-rating"
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import Recording from "../assets/Recording.mp4"
 import useProduct from "@/hooks/useProduct"
 import Loading from "@/components/layouts/Loading"
 import { formatPrice } from "@/lib/format"
@@ -64,13 +63,10 @@ const ProductDetailPage = () => {
                         </CarouselItem>
                         <CarouselItem>
                             <div className="w-full rounded-2xl overflow-hidden border">
-                                <video
-                                    src={Recording}
+                                <img
+                                    src={product.image}
+                                    alt={`Product image of ${product.title}`}
                                     className="w-full aspect-[3/2] h-full object-cover"
-                                    autoPlay
-                                    muted
-                                    playsInline
-                                    loop
                                 />
                             </div>
                         </CarouselItem>
