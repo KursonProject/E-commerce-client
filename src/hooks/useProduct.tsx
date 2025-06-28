@@ -125,8 +125,6 @@ const useProduct = () => {
         getOrders()
     }, [])
 
-    console.log("Orders:", orders)
-
     return { products, loading, payment, orders }
 }
 
