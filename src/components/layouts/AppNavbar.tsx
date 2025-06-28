@@ -12,17 +12,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 
 const pathRoutes = [
   {
-    name: "Products", path: "#", more: [
+    name: "PRODUCTS", path: "#", more: [
       { name: "All Products", path: "/products" },
       { name: "Website Templates", path: "/products/website-templates" },
       { name: "AI Agents", path: "/products/ai-agents" },
-      { name: "Customize", path: "/products/customize" },
     ]
   },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
   {
-    name: "More", path: "#", more: [
+    name: "RESOURCES", path: "#", more: [
+      { name: "About", path: "/about" },
+      { name: "Contact", path: "/contact" },
       { name: "FAQ", path: "/faq" },
       { name: "Privacy", path: "/privacy" },
       { name: "Terms", path: "/terms" },

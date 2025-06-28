@@ -35,7 +35,7 @@ const CardProduk = ({ title, image, price, tools, className, rating }: CardProdu
                     <div className="flex items-center gap-2">
                         {tools.map((tool, index) => (
                             <div key={index} className="flex items-center gap-1">
-                                <img src={tool.icon} alt={tool.name} className="w-4 h-4" />
+                                <img src={tool.icon} alt={tool.name} className="w-4 h-4 filter dark:invert" />
                                 <span className="text-sm">{tool.name}</span>
                             </div>
                         ))}

@@ -8,10 +8,5 @@
     "name": "AI Aautomation",
     "description": "Bangun toko online, landing page, atau portofolio tanpa harus mendesain dari nol. Desain modern, mobile-ready, dan mudah disesuaikan.",
     "path": "/products/ai-automation"
-  },
-  {
-    "name": "Customize",
-    "description": "Sebelum checkout, Anda bisa menyesuaikan nama brand, domain, dan preferensi lainnya sesuai bisnis Anda.",
-    "path": "/products/customize"
   }
 ]

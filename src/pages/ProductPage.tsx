@@ -55,7 +55,6 @@ const ProductPage = () => {
     const pathToCategoryMap: Record<string, string> = {
       "/products/website-builder": "Website Builder",
       "/products/ai-automation": "AI Automation",
-      "/products/customize": "Customize",
     };
     setSelectedCategory(pathToCategoryMap[location] || "All Products");
   }, [location]);

@@ -1,13 +1,12 @@
 import CardProduk from "@/components/templates/card/CardProduk"
 import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { ArrowRight, UserPlus, Search, CreditCard, Settings, Download, Rocket, Brain, DollarSign, ShoppingCart } from "lucide-react"
+import { ArrowRight, UserPlus, Search, CreditCard, Download, Rocket, Brain, DollarSign, ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
 import { FadeIn } from "@/components/templates/animated/FadeMotion"
-import ProductCategoryJson from "@/data/productCategory.json"
 import faqData from "@/data/faqData.json"
 import { AccordionContent, AccordionItem, AccordionTrigger, Accordion } from "@/components/ui/accordion"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
 
 import FloatingBackground from "@/assets/background/FloatingBackground"
 import { TypingEffect } from "@/components/templates/animated/TextEffect"
@@ -31,14 +30,9 @@ const steps = [
     desc: "Bayar dengan aman dan dapatkan akses penuh dengan lisensi resmi.",
   },
   {
-    icon: <Settings className="w-7 h-7" />,
-    title: "Kustomisasi Detail Platform",
-    desc: "Masukkan nama website atau agen AI Anda, branding, dan preferensi sebelum checkout.",
-  },
-  {
     icon: <Download className="w-7 h-7" />,
-    title: "Gunakan & Dapatkan Dukungan",
-    desc: "Nikmati unduhan instan, pembaruan seumur hidup, dan bantuan dari tim ahli.",
+    title: "Siap Pakai. Selalu Update. Didampingi Ahli.",
+    desc: "Kami pastikan Anda tidak hanya mendapatkan produk, tapi juga pengalaman dan bantuan terbaik.",
   },
 ];
 
@@ -59,8 +53,8 @@ const howLumino = [
     icons: DollarSign
   },
   {
-    name: "Marketplace Produk Digital",
-    desc: "Jual dan beli produk digital dalam satu platform—dari desainer, developer, hingga pelaku bisnis.",
+    name: "Rumah bagi Produk Digital Berkualitas Tinggi",
+    desc: "Dari desain elegan hingga solusi otomatisasi cerdas—beli dan jual hanya karya terbaik dari para ahli.",
     icons: ShoppingCart,
   }
 ]
@@ -81,11 +75,12 @@ const HomePage = () => {
         <FloatingBackground />
         <FadeIn direction="up" className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl font-bold tracking-tight leading-tight">
-            Digital Cepat. Bisnis Cerdas. <br className="hidden md:block" />
-            <TypingEffect texts={["Marketplace Website & AI Otomatis"]} className="text-primary text-4xl" />
+            Empowering Brands with <br className="hidden md:block" />
+            <TypingEffect texts={["Smart Websites & AI Solutions"]} className="text-primary text-4xl" />
           </h1>
-          <p className="mt-2 text-lg md:text-xl text-muted-foreground">
-            Lumino adalah platform lengkap untuk membuat, menyesuaikan, dan menjual produk digital mulai dari template website profesional hingga agen AI otomatis. Semua produk siap digunakan, dapat dipersonalisasi, dan tidak perlu coding!
+          <p className="mt-2 text-sm md:text-lg text-muted-foreground">
+            Lumino adalah platform teknologi yang membantu bisnis membangun website profesional dan mengotomatisasi operasional mereka menggunakan kekuatan AI.
+            Kami menyediakan layanan Website Development yang cepat, estetis, dan responsif didukung solusi AI automation untuk mempercepat pertumbuhan dan efisiensi kerja.
           </p>
           <div className="mt-6 flex justify-center gap-4 flex-wrap">
             <Button size={"lg"} className="rounded-full" asChild>
@@ -118,32 +113,8 @@ const HomePage = () => {
             </FadeIn>
           ))}
         </div>
-        <FadeIn className="w-full mt-20">
-          <h1 className="text-2xl font-bold text-secondary">Temukan Produk Digital Sesuai Kebutuhan Anda</h1>
-        </FadeIn>
-        <hr className="w-full my-4" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-          {ProductCategoryJson.map((item, index) =>
-            <FadeIn key={index} direction="down" delay={index * 0.1} className="w-full h-full">
-              <Card key={index} className="w-full h-full">
-                <CardHeader className="h-full">
-                  <CardTitle>{item.name}</CardTitle>
-                  <CardDescription>{item.description}</CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button asChild size={"sm"}>
-                    <Link to={item.path}>
-                      Browse {item.name} <ArrowRight />
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </FadeIn>
-          )}
-        </div>
-
         <FadeIn className="w-full flex items-center justify-between mt-20">
-          <h1 className="text-2xl font-bold text-secondary">Produk Unggulan</h1>
+          <h1 className="text-2xl font-bold text-secondary">Temukan Produk Digital Sesuai Kebutuhan Anda</h1>
           <Button variant="link" asChild>
             <Link to="/products">
               Lihat Semua Produk <ArrowRight />
@@ -183,7 +154,7 @@ const HomePage = () => {
             </p>
           </FadeIn>
           <hr className="my-4" />
-          <div className="grid md:grid-cols-5 gap-4">
+          <div className="grid md:grid-cols-4 gap-4">
             {steps.map((step, idx) => (
               <FadeIn delay={idx * 0.1} direction="center" key={idx} className="flex flex-col items-center text-center">
                 <div className="text-primary mb-4">{step.icon}</div>

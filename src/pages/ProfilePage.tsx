@@ -5,32 +5,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { format } from "date-fns"
-
-const orders = [
-  {
-    id: "ORD-001",
-    date: new Date("2025-06-01"),
-    item: "Modern Business Template",
-    status: "Completed",
-    downloadUrl: "/downloads/modern-business-template.zip", // contoh file
-  },
-  {
-    id: "ORD-002",
-    date: new Date("2025-06-15"),
-    item: "AI Virtual Assistant",
-    status: "Processing",
-    downloadUrl: null, // belum tersedia
-  },
-]
+import Loading from "@/components/layouts/Loading"
+import useProduct from "@/hooks/useProduct"
 
 const ProfilePage = () => {
   const { user, isAuthenticated, logout } = useAuth()
 
-  // Redirect ke login jika belum login
-  if (!isAuthenticated) {
+  const { orders } = useProduct()
+
+  if (isAuthenticated === undefined) return <Loading />
+  else if (!isAuthenticated) {
     return <Navigate to="/login" />
   }
-  
+
   return (
     <section className="min-h-screen px-4 py-20 bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       <div className="max-w-3xl mx-auto space-y-10">
@@ -69,26 +56,26 @@ const ProfilePage = () => {
                 className="flex flex-col md:flex-row md:justify-between md:items-center border rounded-lg p-4 gap-2"
               >
                 <div>
-                  <p className="font-semibold">{order.item}</p>
+                  <p className="font-semibold">{order.product.title}</p>
                   <p className="text-sm text-muted-foreground">
-                    {format(order.date, "dd MMM yyyy")} &bull; {order.id}
+                    {format(order.updateAt, "dd MMM yyyy")} &bull; {order.id}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-4 mt-2 md:mt-0">
                   <Badge
                     variant={
-                      order.status === "Completed"
+                      order.status === "success"
                         ? "default"
-                        : order.status === "Processing"
+                        : order.status === "pending"
                           ? "secondary"
                           : "outline"
                     }
                   >
                     {order.status}
                   </Badge>
-
-                  {order.status === "Completed" && order.downloadUrl && (
+{/* 
+                  {order.status === "success" && order.downloadUrl && (
                     <a
                       href={order.downloadUrl}
                       download
@@ -96,7 +83,7 @@ const ProfilePage = () => {
                     >
                       Download
                     </a>
-                  )}
+                  )} */}
                 </div>
               </div>
             ))}

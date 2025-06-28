@@ -5,6 +5,7 @@ import { AuthForm, InputFormAuth } from "@/components/layouts/AuthForm"
 import { validateEmail, validatePassword } from "@/lib/ValidateForm"
 import { useAuth } from "@/hooks/useAuth"
 import Cookies from "js-cookie"
+import Loading from "@/components/layouts/Loading"
 
 const LoginPage = () => {
     const [email, setEmail] = useState("")
@@ -35,7 +36,8 @@ const LoginPage = () => {
             }
         }
     }
-    if (isAuthenticated) return <Navigate to="/" />
+    if (isAuthenticated === undefined) return <Loading />
+    else if (isAuthenticated) return <Navigate to="/" replace/>
 
     return (
         <AuthForm handleSubmit={handleSubmit} title="LOGIN TO YOUR ACCOUNT">

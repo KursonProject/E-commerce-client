@@ -3,11 +3,13 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import DataProduct from "@/data/product.json"
-
+import useProduct from "@/hooks/useProduct"
 const ProductModify = () => {
   const { id } = useParams()
-  const product = DataProduct.find((item) => item.title === id)
+
+  const { products } = useProduct()
+
+  const product = products.find((item) => item.title === id)
 
   const [form, setForm] = useState({
     projectName: "",

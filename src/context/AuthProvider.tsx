@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     register: "",
     logout: "",
   });
-  const [isAuthenticated, setIsAuthenticated] = useState(Boolean);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     const payload = parseJwt(token);
-    console.log(payload)
     setUser({
       name: payload.username,
       email: payload.user_email
@@ -147,7 +146,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated(false)
     return <Navigate to={"/login"} />
   }
-  console.log(isAuthenticated)
   return (
     <AuthContext.Provider
       value={{

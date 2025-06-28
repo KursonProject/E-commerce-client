@@ -14,7 +14,7 @@ export interface AuthContextType {
   register: (name: string, email: string, password: string) => Promise<boolean>
   google: () => void
   logout: () => void
-  isAuthenticated: boolean
+  isAuthenticated: boolean | undefined
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)

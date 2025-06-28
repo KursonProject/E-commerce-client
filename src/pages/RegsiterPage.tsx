@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import { AuthForm, InputFormAuth } from "@/components/layouts/AuthForm"
 import { validateEmail, validatePassword, validateUsername } from "@/lib/ValidateForm"
 import { useAuth } from "@/hooks/useAuth"
+import Loading from "@/components/layouts/Loading"
 
 const RegisterPage = () => {
     const [username, setUsername] = useState("")
@@ -35,8 +36,8 @@ const RegisterPage = () => {
             }
         }
     }
-
-    if (isAuthenticated) return <Navigate to="/" />
+    if (isAuthenticated === undefined) return <Loading />
+    else if (isAuthenticated) return <Navigate to="/" replace />
 
     return (
         <AuthForm handleSubmit={handleSubmit} title="CREATE YOUR ACCOUNT">
