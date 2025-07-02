@@ -1,22 +1,16 @@
 import { useAuth } from "@/hooks/useAuth"
-import { Link, Navigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { format } from "date-fns"
-import Loading from "@/components/layouts/Loading"
 import useProduct from "@/hooks/useProduct"
 
 const ProfilePage = () => {
-  const { user, isAuthenticated, logout } = useAuth()
+  const { user, logout } = useAuth()
 
   const { orders } = useProduct()
-
-  if (isAuthenticated === undefined) return <Loading />
-  else if (!isAuthenticated) {
-    return <Navigate to="/login" />
-  }
 
   return (
     <section className="min-h-screen px-4 py-20 bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">

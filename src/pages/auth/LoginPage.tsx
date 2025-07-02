@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { AuthForm, InputFormAuth } from "@/components/layouts/AuthForm"
 import { validateEmail, validatePassword } from "@/lib/ValidateForm"
 import { useAuth } from "@/hooks/useAuth"
-import Cookies from "js-cookie"
 import Loading from "@/components/layouts/Loading"
 
 const LoginPage = () => {
@@ -82,20 +81,6 @@ const LoginPage = () => {
             </div>
         </AuthForm>
     )
-}
-
-export const LoginGoogleCallback = () => {
-    const token = useLocation().search.split("=")[1].split("&")[0]
-
-    const saveToken = (token: string) => {
-        Cookies.set("token", token, { expires: 7, path: "/", secure: false })
-    }
-
-    useEffect(() => {
-        if (token) saveToken(token)
-    }, [token])
-
-    return <Navigate to={"/"} />
 }
 
 export default LoginPage

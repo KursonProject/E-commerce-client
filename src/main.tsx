@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeProvider.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { CartProductProvider } from './context/CartProductProvider.tsx'
 import { AuthProvider } from './context/AuthProvider.tsx'
+import { ProductProvider } from './context/ProductProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <>
@@ -12,7 +13,9 @@ createRoot(document.getElementById('root')!).render(
       <ThemeProvider defaultTheme="system" storageKey='vite-ui-theme'>
         <AuthProvider>
           <CartProductProvider>
-            <App />
+            <ProductProvider>
+              <App />
+            </ProductProvider>
           </CartProductProvider>
         </AuthProvider>
       </ThemeProvider>

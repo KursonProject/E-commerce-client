@@ -33,25 +33,33 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     register: "",
     logout: "",
   });
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = Cookies.get("token")
+    const token = Cookies.get("token");
     if (!token) {
-      setIsAuthenticated(false)
+      setIsAuthenticated(false);
+      setUser(null);
+      setLoading(false);
       return;
     }
+
     const payload = parseJwt(token);
-    setUser({
-      name: payload.username,
-      email: payload.user_email
-    })
-    setIsAuthenticated(true)
-  }, [])
+    if (!payload?.username || !payload?.user_email) {
+      setIsAuthenticated(false);
+      setUser(null);
+      Cookies.remove("token");
+      setLoading(false);
+      return;
+    }
+
+    setUser({ name: payload.username, email: payload.user_email });
+    setIsAuthenticated(true);
+    setLoading(false);
+  }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    setLoading(true)
     try {
       const response = await fetch(`${API_URI}/auth/login`, {
         method: "POST",
@@ -84,7 +92,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const register = async (name: string, email: string, password: string): Promise<boolean> => {
-    setLoading(true)
     try {
       const response = await fetch(`${API_URI}/auth/register`, {
         method: "POST",
@@ -137,6 +144,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const google = () => {
     setIsAuthenticated(true)
+    setLoading(false)
     return window.location.href = `${API_URI}/auth/google?redirect=${window.location.href}/google`
   }
 
@@ -146,6 +154,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated(false)
     return <Navigate to={"/login"} />
   }
+
   return (
     <AuthContext.Provider
       value={{

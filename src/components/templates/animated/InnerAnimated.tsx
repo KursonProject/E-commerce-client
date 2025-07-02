@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-const InnerAnimation = ({ children }: { children: React.ReactNode }) => {
+const InnerAnimation = ({ children, className }: { children: React.ReactNode, className?: string }) => {
     return (
         <motion.main
             initial={{ opacity: 0 }}
@@ -12,7 +12,7 @@ const InnerAnimation = ({ children }: { children: React.ReactNode }) => {
                 opacity: 0,
                 transition: { duration: 0.2, ease: "easeInOut", type: "tween", delay: 0.2 }
             }}
-            className="w-full"
+            className={`w-full h-full ${className || ""}`}
         >
             {children}
         </motion.main>

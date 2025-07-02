@@ -1,8 +1,7 @@
 import { useCart } from "@/hooks/useCartProduct"
 import { Button } from "@/components/ui/button"
 import { Trash2 } from "lucide-react"
-import { Link, Navigate, useNavigate } from "react-router-dom"
-import { useAuth } from "@/hooks/useAuth"
+import { Link, useNavigate } from "react-router-dom"
 import { formatPrice } from "@/lib/format"
 import useProduct from "@/hooks/useProduct"
 
@@ -10,16 +9,12 @@ export default function ProductCartPage() {
     const { cart, removeFromCart, clearCart } = useCart()
     const navigate = useNavigate()
 
-    const { isAuthenticated } = useAuth()
     const { payment } = useProduct()
 
     const totalPrice = cart.reduce(
         (total, item) => total + item.price * item.quantity,
         0
     )
-
-    if (!isAuthenticated) return <Navigate to="/login" />
-
     if (cart.length === 0) {
         return (
             <section className="min-h-screen flex flex-col items-center justify-center text-center p-10">

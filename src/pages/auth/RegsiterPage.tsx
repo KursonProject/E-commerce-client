@@ -19,7 +19,7 @@ const RegisterPage = () => {
 
     const navigate = useNavigate()
 
-    const { register, isAuthenticated, error: authError, loading } = useAuth()
+    const { register, isAuthenticated, error: authError, loading, google } = useAuth()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -84,7 +84,11 @@ const RegisterPage = () => {
                     <div className="w-full border-t border-muted-foreground"></div>
                 </div>
 
-                <Button variant="outline" className="w-full">Login with Google</Button>
+                <Button variant="outline" type="button" className="w-full" disabled={loading} onClick={() => google()}>
+                    <img src="https://www.svgrepo.com/show/353817/google-icon.svg" alt="" className="h-full" />
+                    Login with Google
+                </Button>
+
                 <div className="w-full flex items-center gap-2 text-sm font-medium text-muted-foreground">
                     <span>Already have an account?</span>
                     <Link to="/login" className="text-blue-600 hover:underline dark:text-blue-500">Login</Link>
