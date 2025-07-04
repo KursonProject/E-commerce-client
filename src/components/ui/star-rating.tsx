@@ -73,7 +73,7 @@ export const StarRatingInput = ({
           >
             <Star
               size={size}
-              className={isActive ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"}
+              className={isActive ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground/40"}
             />
           </button>
         )

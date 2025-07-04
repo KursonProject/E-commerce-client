@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useAnimationControls } from 'framer-motion'
 export function TypingEffect({
   texts,
   className,
-  duration = 0.02,
+  duration = 0.01,
   pauseBeforeFadeOut = 3000
 }: {
   texts: string[]
