@@ -29,3 +29,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/lumino_client:latest
+          build_args: |
+            VITE_API_URL=${{ secrets.VITE_API_URL }}
