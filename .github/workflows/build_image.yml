@@ -30,4 +30,4 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/lumino_client:latest
           build-args: |
-            VITE_API_URL=${{ secrets.VITE_API_URL }}
+            VITE_API_URI=${{ secrets.VITE_API_URI }}
