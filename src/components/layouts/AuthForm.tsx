@@ -13,7 +13,7 @@ type AuthFormProps = {
 
 export const AuthForm = ({ handleSubmit, children, title }: AuthFormProps) => {
     return (
-        <section className="w-full h-screen flex items-center justify-center p-res-xxl">
+        <section className="w-full h-[100dvh] flex items-center justify-center p-res-xxl overflow-hidden">
 
             <div className="absolute top-2 left-2">
                 <Link to="/">
@@ -29,11 +29,11 @@ export const AuthForm = ({ handleSubmit, children, title }: AuthFormProps) => {
 
             <div className="absolute top-0 left-0 h-full w-full  bg-gradient-to-b from-blue-600 to-purple-600 opacity-20 dark:opacity-10 -z-10"></div>
 
-            <div className="w-full h-full flex items-center justify-center rounded-xl border bg-background overflow-hidden">
+            <div className="w-full md:h-full h-fit flex items-center justify-center rounded-xl border bg-background/70 overflow-hidden">
                 <div className="w-1/2 h-full bg-gradient-to-br from-indigo-600/30 to-purple-600/30 md:flex hidden items-center justify-center">
                     <img src={bgForm} alt="" className="w-full h-full object-cover filter drop-shadow-[0_0_5px_var(--color-foreground)]" />
                 </div>
-                <div className="md:w-1/2 w-full h-full flex flex-col gap-4 items-center justify-center px-res-xxl">
+                <div className="md:w-1/2 w-full h-full flex flex-col gap-4 items-center justify-center p-res-xxl">
                     <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{title}</h1>
                     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
                         {children}

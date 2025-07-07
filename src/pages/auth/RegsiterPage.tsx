@@ -74,7 +74,7 @@ const RegisterPage = () => {
             />
             <div className="w-full flex items-center text-sm text-muted-foreground gap-2">
                 <input type="checkbox" className="ml-2" required />
-                Have you agreed to the <Link to="/terms" className="text-blue-600 ml-1 hover:underline dark:text-blue-500">Terms and Conditions</Link>?
+                <span>Have you agreed to the <Link to="/terms" className="text-blue-600 ml-1 hover:underline dark:text-blue-500">Terms and Conditions</Link>?</span>
             </div>
             <div className="w-full flex flex-col gap-2">
                 <Button type="submit" disabled={loading} className="w-full">{loading ? "Loading..." : "Register"}</Button>
