@@ -15,7 +15,6 @@ const LoginPage = () => {
         password: ""
     })
 
-    const navigate = useNavigate()
 
     const { login, isAuthenticated, error: authError, loading, google } = useAuth()
 
@@ -27,9 +26,7 @@ const LoginPage = () => {
         else if (!password) return setError({ ...error, password: "Password is required" })
         else {
             const isLogin = await login(email, password)
-            if (isLogin) {
-                navigate("/")
-            } else {
+            if (!isLogin) {
                 setError({ ...error, login: authError.login })
             }
         }
