@@ -28,10 +28,10 @@ const LoginPage = () => {
         else {
             const isLogin = await login(email, password)
             if (isLogin) {
-                window.location.reload()
-                navigate("/")
+                // window.location.reload()
+                // navigate("/")
             } else {
-                setError({ ...error, login: authError.login })
+                // setError({ ...error, login: authError.login })
             }
         }
     }

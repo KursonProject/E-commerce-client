@@ -62,10 +62,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const response = await fetch(`${API_URI}/auth/login`, {
+        credentials : 'include',
         method: "POST",
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
+
         },
         body: JSON.stringify({
           user_email: email,

@@ -40,6 +40,7 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
         try {
             const response = await fetch(`${API_URI}/user/payment/transaction`, {
                 method: "POST",
+                credentials:"same-origin",
                 headers: {
                     "Accept": "*/*",
                     "Content-Type": "application/json",
@@ -73,10 +74,10 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
             try {
                 const response = await fetch(`${API_URI}/user/payment/transaction`, {
                     method: "GET",
+                    credentials:'include',
                     headers: {
                         "Accept": "*/*",
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${Cookies.get("token")}`
                     },
                 })
                 if (!response.ok) {
