@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await fetch(`${API_URI}/auth/login`, {
         credentials : 'include',
         method: "POST",
-        credentials : 'include',
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",

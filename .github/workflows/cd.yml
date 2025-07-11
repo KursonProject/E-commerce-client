@@ -1,0 +1,47 @@
+name: Deployment To Server
+on:
+  workflow_run:
+    workflows : ["Build and Push Docker Image"]
+    types: 
+      - completed
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install cloudflared
+        run: |
+          sudo mkdir -p --mode=0755 /usr/share/keyrings
+          curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+          sudo tee /etc/apt/sources.list.d/cloudflare-main.list >/dev/null <<EOF   
+          deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared $(lsb_release -cs) main
+          EOF
+          sudo apt-get update && sudo apt-get install -y cloudflared
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "${SSH_KNOWN_HOSTS}" > ~/.ssh/known_hosts
+          
+          cat <<EOF> ~/.ssh/config
+          Host ssh.lumino.qzz.io
+            ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h
+          EOF
+
+      - name: Run deployment commands
+        run: |
+          ssh yohanes@ssh.lumino.qzz.io "
+            echo 'Koneksi berhasil!'
+            cd app/lumino_client
+            docker-compose pull
+            docker-compose up -d --build
+          "
