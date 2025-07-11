@@ -16,18 +16,21 @@ const LoginPage = () => {
     })
 
 
-    const { login, isAuthenticated, error: authError, loading, google } = useAuth()
+    const { login, isAuthenticated, error: authError, loading, google , disableLoading} = useAuth()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
+        console.log(email,password)
         // Validasi
         if (!email) return setError({ ...error, email: "Email is required" })
         else if (!password) return setError({ ...error, password: "Password is required" })
         else {
             const isLogin = await login(email, password)
-            if (!isLogin) {
+            if (isLogin) {
+                window.location.reload()
+            } else {
                 setError({ ...error, login: authError.login })
+                disableLoading()
             }
         }
     }
