@@ -18,7 +18,7 @@ const CardProduk = ({ title, image, price, tools, className, rating }: CardProdu
     const navigate = useNavigate();
 
     return (
-        <div onClick={() => navigate(`/products/details/${title}`)} className={`cursor-pointer w-full h-full group relative rounded-lg overflow-hidden border hover:shadow-lg bg-card transition-all duration-300 ease-in-out ${className}`}>
+        <div onClick={() => navigate(`/products/details/${title}`)} className={`cursor-pointer w-full h-full group relative rounded-lg overflow-hidden border hover:shadow-lg hover:-translate-y-1 bg-card transition-all duration-300 ease-in-out ${className}`}>
             <div className="aspect-[6/4] overflow-hidden border-b relative">
                 <img
                     src={image}

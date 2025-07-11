@@ -34,11 +34,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true)
     try {
       const response = await fetch(`${API_URI}/auth/login`, {
+        credentials : 'include',
         method: "POST",
         credentials : 'include',
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
+
         },
         body: JSON.stringify({
           user_email: email,

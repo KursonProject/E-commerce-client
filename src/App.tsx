@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate, useLocation, Outlet } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useAuth } from "./hooks/useAuth"
 import Loading from "./components/layouts/Loading"
 import { AnimatePresence } from "framer-motion"
@@ -64,12 +64,21 @@ const AuthRoute = () => (
 
 const App = () => {
   const location = useLocation();
+  const isFirstRender = useRef(true); // ⬅️ Untuk mendeteksi render pertama
 
   useEffect(() => {
-    setTimeout(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false; // ⬅️ Lewatkan scroll saat first render
+      return;
+    }
+    // Scroll to top saat pindah route (bukan refresh)
+    const timeout = setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 200);
+
+    return () => clearTimeout(timeout);
   }, [location.pathname]);
+
 
   return (
     <AnimatePresence mode="wait">
