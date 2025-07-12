@@ -15,6 +15,7 @@ export interface AuthContextType {
   google: () => void
   logout: () => void
   isAuthenticated: boolean | undefined
+  disableLoading : () => void
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)

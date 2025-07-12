@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { AuthForm, InputFormAuth } from "@/components/layouts/AuthForm"
 import { validateEmail, validatePassword } from "@/lib/ValidateForm"
 import { useAuth } from "@/hooks/useAuth"
@@ -15,13 +15,12 @@ const LoginPage = () => {
         password: ""
     })
 
-    const navigate = useNavigate()
 
-    const { login, isAuthenticated, error: authError, loading, google } = useAuth()
+    const { login, isAuthenticated, error: authError, loading, google , disableLoading} = useAuth()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
+        console.log(email,password)
         // Validasi
         if (!email) return setError({ ...error, email: "Email is required" })
         else if (!password) return setError({ ...error, password: "Password is required" })
@@ -29,9 +28,9 @@ const LoginPage = () => {
             const isLogin = await login(email, password)
             if (isLogin) {
                 window.location.reload()
-                navigate("/")
             } else {
                 setError({ ...error, login: authError.login })
+                disableLoading()
             }
         }
     }
